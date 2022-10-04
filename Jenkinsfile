@@ -14,14 +14,14 @@ pipeline {
       steps {
         echo '********* Build Stage Started **********'
         
-        bat 'python app.py'
+        sh 'python app.py'
         echo '********* Build Stage Finished **********'
         }
     }
     stage('Testing Stage') {
       steps {
         echo '********* Test Stage Started **********'
-        bat 'python test.py'
+        sh 'python test.py'
         echo '********* Test Stage Finished **********'
       }   
     }
