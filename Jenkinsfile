@@ -25,22 +25,6 @@ pipeline {
         echo '********* Test Stage Finished **********'
       }   
     }
-    stage('Configure Artifactory'){
-      steps{
-        script {
-          
-          echo '********* Configure Artifactory Started **********'
-             def userInput = input(
-             id: 'userInput', message: 'Enter password for Artifactory', parameters: [
-             
-             [$class: 'TextParameterDefinition', defaultValue: 'password', description: 'Artifactory Password', name: 'password']])
-             
-             bat 'jfrog rt c artifactory-demo --url=http://34.68.191.118:8081/artifactory --user=admin --password='+userInput
-             
-          echo '********* Configure Artifactory Finished **********'
-        }
-       }
-    }
     stage('Sanity check') {
             steps {
                 input "Does the staging environment look ok?"
