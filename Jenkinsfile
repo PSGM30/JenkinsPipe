@@ -13,8 +13,7 @@ pipeline {
     stage('Build Stage') {
       steps {
         echo '********* Build Stage Started **********'
-        bat 'pip install xmlrunner'
-        bat 'pip install flask'
+        
         bat 'python app.py'
         echo '********* Build Stage Finished **********'
         }
