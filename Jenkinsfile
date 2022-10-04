@@ -14,7 +14,7 @@ pipeline {
       steps {
         echo '********* Build Stage Started **********'
         
-        bat 'pyinstaller --onefile app.py'
+        bat 'python app.py'
         echo '********* Build Stage Finished **********'
         }
     }
