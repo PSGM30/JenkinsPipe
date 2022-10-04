@@ -36,7 +36,7 @@ stage('Deployment Stage'){
                 echo '********* Deploy Stage Started **********'
                 timeout(time : 1, unit : 'MINUTES')
                 {
-                bat 'python app.py'
+                sh 'python app.py'
                 }
                 echo '********* Deploy Stage Finished **********'
             }
