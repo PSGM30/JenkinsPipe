@@ -13,7 +13,6 @@ pipeline {
     stage('Build Stage') {
       steps {
         echo '********* Build Stage Started **********'
-        
         sh 'python app.py'
         echo '********* Build Stage Finished **********'
         }
@@ -43,35 +42,17 @@ stage('Deployment Stage'){
     }
   }
   post {
-        always {
-            echo 'We came to an end!'
-            archiveArtifacts artifacts: 'dist/*.exe', fingerprint: true
-            junit 'test-reports/*.xml'
-          script{
-            if(currentBuild.currentResult=='SUCCESS')
-            {
-              echo '********* Uploading to Artifactory is Started **********'
-              /*bat 'jfrog rt u "dist/*.exe" generic-local'*/
-              bat 'Powershell.exe -executionpolicy remotesigned -File build_script.ps1'
-              echo '********* Uploading Finished **********'
-            }
-          }
-          
-            
-            deleteDir()
-
-         }
         success {
           echo 'Build Successfull!!'
-    }
+          }
         failure {
         echo 'Sorry mate! build is Failed :('
-    }
+          }
         unstable {
             echo 'Run was marked as unstable'
-        }
+          }
         changed {
             echo 'Hey look at this, Pipeline state is changed.'
-        }
-    }
+          }
+      }
 }
