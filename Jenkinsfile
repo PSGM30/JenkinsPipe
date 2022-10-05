@@ -24,6 +24,26 @@ pipeline {
         echo '********* Test Stage Finished **********'
       }   
     }
+    
+    stage('Build docker image'){
+            steps{
+                script{
+                    sh 'docker build -t basangouda/dockertrial .'
+                }
+            }
+        }
+        stage('Push image to Hub'){
+            steps{
+                script{
+                   withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+                   sh 'docker login -u basangouda -p BPDataScientist@24'
+
+}
+                   sh 'docker push basangouda/dockertrial'
+                }
+            }
+        }
+    
     stage('Sanity check') {
             steps {
                 input "Does the staging environment look ok?"
