@@ -35,11 +35,8 @@ pipeline {
         stage('Push image to Hub'){
             steps{
                 script{
-                   withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-                   sh 'docker login -u basangouda -p BPDataScientist@24'
-
-}
-                   sh 'docker push basangouda/dockertrial'
+                   sh 'docker login -u basangouda -p dckr_pat_brbD9fCMt9YIpRliENL7-ZuX8to'
+                   sh 'docker push basangouda/dockertrial:latest'
                 }
             }
         }
